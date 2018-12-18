@@ -30,8 +30,6 @@ import com.everis.products.service.ProductService;
 @RequestMapping(path = "/api")
 public class ProductController {
 
-	private final String addProductResponse = "Product Saved";
-	
 	@Autowired
 	private ProductService productService;
 	

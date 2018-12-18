@@ -27,9 +27,6 @@ public class ProductsApplication {
 		
 		//ps.create(p);
 		*/
-		for(ProductDTO product : ps.getProducts()) {
-			System.out.println(product.getProductName());
-		}
 	}
 
 }
