@@ -10,14 +10,20 @@ public class ProductDTO implements Serializable {
 
 	
 	private Long productId;
+	
 	@NotNull
 	private String productName;
+	
+	@NotNull
 	private String productCode;
+	
 	private String releaseDate;
     private Double price;
     private String description;
     private Double starRating;
     private String imageUrl;
+
+    public ProductDTO() {}
     
     public ProductDTO(Product p) {
     	this.productId = p.getProductId();

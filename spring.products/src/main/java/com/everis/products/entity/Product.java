@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.everis.products.dtos.ProductDTO;
 
@@ -18,9 +19,11 @@ public class Product {
 	@Column(name = "productId")
 	private Long productId;
 	
+	@NotNull
 	@Column(name = "productName")
 	private String productName;
 	
+	@NotNull
 	@Column(name = "productCode")
 	private String productCode;
 	
@@ -118,6 +121,7 @@ public class Product {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
+	
 	
 	
 }

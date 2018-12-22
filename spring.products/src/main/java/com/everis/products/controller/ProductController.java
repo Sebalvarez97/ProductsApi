@@ -24,6 +24,7 @@ import com.everis.products.dtos.ProductDTO;
 import com.everis.products.entity.Product;
 import com.everis.products.repository.IProductRepository;
 import com.everis.products.service.ProductService;
+import com.everis.products.service.exceptions.ExistingEntityException;
 
 @Controller
 @RestController
@@ -49,30 +50,38 @@ public class ProductController {
 					.ok()
 					.body(product);
 		}catch(ResourceAccessException ex) {
-			return ResponseEntity.status(502).build();
+			return ResponseEntity.status(204).build();
 		}
 	}
 	
 	@PostMapping("/products/add")
 	public @ResponseBody ResponseEntity<ProductDTO> addProduct(@Valid @RequestBody ProductDTO product) {
-		return ResponseEntity
-				.status(201)
-				.body(productService.createProduct(product));
+		try {
+			return ResponseEntity
+					.status(201)
+					.body(productService.createProduct(product));
+		} catch (ExistingEntityException e) {
+			return ResponseEntity.status(204).build();
+		}
 	}
 	@PutMapping("/products/edit")
 	public @ResponseBody ResponseEntity<ProductDTO> editProduct(@Valid @RequestBody ProductDTO product){
-		return ResponseEntity.status(200).body(productService.editProduct(product));
+		try {
+			return ResponseEntity.status(201).body(productService.editProduct(product));
+		} catch (ExistingEntityException e) {
+			return ResponseEntity.status(204).build();
+		}
 	}
 	
-	@DeleteMapping("/products/delete")
-	public @ResponseBody ResponseEntity<ProductDTO> deleteProduct(@RequestBody ProductDTO product) {
+	@DeleteMapping("/products/{productId}")
+	public @ResponseBody ResponseEntity<ProductDTO> deleteProduct(@PathVariable Long productId) {
 		try {
-			productService.deleteProduct(product);
+			ProductDTO product = productService.deleteProduct(productId);
 			return ResponseEntity
 					.ok()
 					.body(product);
 		}catch(ResourceAccessException ex) {
-			return ResponseEntity.status(502).build();
+			return ResponseEntity.status(204).build();
 		}
 	}
 } 
