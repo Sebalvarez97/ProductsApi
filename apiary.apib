@@ -1,0 +1,161 @@
+FORMAT: 1A
+HOST: localhost:8080/api/products
+
+# ProductsApi
+
+A simple API allowing consumers to view products and their caracteristics.
+
+## Products [/]
+
+### List all Products [GET]
+
+This allows you to get a list of all Products in the database.
+
++ Response 200 (application/json)
+
+        [
+            {
+                "productId": 9,
+                "productName": "Hammer",
+                "productCode": "TBX-0048",
+                "releaseDate": "May 21, 2016",
+                "price": 8.9,
+                "description": "Curved claw steel hammer",
+                "starRating": 4.8,
+                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
+            },
+            {
+                "productId": 10,
+                "productName": "Video Game Controller",
+                "productCode": "GMG-0042",
+                "releaseDate": "October 15, 2015",
+                "price": 35.95,
+                "description": "Standard two-button video game controller",
+                "starRating": 4.6,
+                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png"
+            },
+            {
+                "productId": 8,
+                "productName": "Garden Cart",
+                "productCode": "GDN-0023",
+                "releaseDate": "March 18, 2016",
+                "price": 32.99,
+                "description": "15 gallon capacity rolling garden cart",
+                "starRating": 4.2,
+                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
+            }
+        ]
+
+## Product [/{productId}]
+
+### Get a Product by Id
+
+This allows you to get a product by his Id.
+Returns a Product, else returns a 204.
+
++ Parameters
+    + id (number) - Id of the Product.
+    
++ Response 201 (application/json)
+
+            {
+                "productId": 8,
+                "productName": "Samsum Galaxy s9",
+                "productCode": "LKF-0980",
+                "releaseDate": "November 18, 2018",
+                "price": 10000.89,
+                "description": "Cell phone with 30mpx, 2gb memory",
+                "starRating": 4,
+                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/302405/1527145993.png"
+            }
+
+
+## Creation [/add]        
+
+### Create a New Product [POST]
+
+This allows to create a new Product with a generated ID, 
+not matters what you put in the productId part of the body.
+Returns a copy of the new Product with the new Id, else returns a 204.
+
++ Request (application/json)
+
+            {
+                "productId": null,
+                "productName": "Samsum Galaxy s9",
+                "productCode": "LKF-0980",
+                "releaseDate": "November 18, 2018",
+                "price": 10000.89,
+                "description": "Cell phone with 30mpx, 2gb memory",
+                "starRating": 4,
+                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/302405/1527145993.png"
+            }
+        
++ Response 201 (application/json)
+
+            {
+                "productId": GENERATED_ID,
+                "productName": "Samsum Galaxy s9",
+                "productCode": "LKF-0980",
+                "releaseDate": "November 18, 2018",
+                "price": 10000.89,
+                "description": "Cell phone with 30mpx, 2gb memory",
+                "starRating": 4,
+                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/302405/1527145993.png"
+            }
+
+## Edit [/edit]
+
+### Edit an Existing Product [PUT]
+
+This allows yo to edi an existing Product, 
+the productId field in the body is important to find the existing one.
+Other fields are the new ones that will be edited.
+Returns a copy of the Product edited, else returns a 204.
+
++ Request (application/json)
+
+            {
+                "productId": 8,
+                "productName": NEW NAME,
+                "productCode": NEW CODE,
+                "releaseDate": NEW DATE,
+                "price": NEW DATE,
+                "description": NEW DESCRIPTION,
+                "starRating": NEW RATING,
+                "imageUrl": NEW IMAGE
+            }
+            
++ Response 201 (application/json)
+
+            {
+                "productId": 8,
+                "productName": NEW NAME,
+                "productCode": NEW CODE,
+                "releaseDate": NEW DATE,
+                "price": NEW DATE,
+                "description": NEW DESCRIPTION,
+                "starRating": NEW RATING,
+                "imageUrl": NEW IMAGE
+            }
+            
+## Delete [/{productId}]
+
+### Delete an Existing Product [DELETE]
+
+This allows you to delete an existing Product,
+the productId field is the key to delete the product.
+Returns a copy of the deleted product, else returns a 204.
+            
++ Response 201 (application/json)
+
+            {
+                "productId": 8,
+                "productName": "Garden Cart",
+                "productCode": "GDN-0023",
+                "releaseDate": "March 18, 2016",
+                "price": 32.99,
+                "description": "15 gallon capacity rolling garden cart",
+                "starRating": 4.2,
+                "imageUrl": "https://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
+            }
