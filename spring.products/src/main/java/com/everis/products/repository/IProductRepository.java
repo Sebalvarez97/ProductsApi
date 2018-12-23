@@ -9,3 +9,4 @@ import com.everis.products.entity.Product;
 public interface IProductRepository extends JpaRepository <Product, Long>{
 
 }
+	

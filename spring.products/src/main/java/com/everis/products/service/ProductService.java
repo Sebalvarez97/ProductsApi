@@ -39,7 +39,7 @@ public class ProductService {
 	
 	public ProductDTO createProduct(ProductDTO product) throws ExistingEntityException {
 			Product p = new Product();
-		if(Validate(product.getProductName(),product.getProductCode(), p.getProductId())) {
+		if(validate(product.getProductName(),product.getProductCode(), p.getProductId())) {
 			p.setDescription(product.getDescription());
 			p.setImageUrl(product.getImageUrl());
 			p.setPrice(product.getPrice());
@@ -57,7 +57,7 @@ public class ProductService {
 	public ProductDTO editProduct(ProductDTO product) throws ExistingEntityException {
 		if(productRepository.existsById(product.getProductId())) {
 				Product antes = productRepository.getOne(product.getProductId());
-			if(Validate(product.getProductName(),product.getProductCode(), antes.getProductId())) {
+			if(validate(product.getProductName(),product.getProductCode(), antes.getProductId())) {
 				antes.setDescription(product.getDescription());
 				antes.setImageUrl(product.getImageUrl());
 				antes.setPrice(product.getPrice());
@@ -81,7 +81,7 @@ public class ProductService {
 		return new ProductDTO(p);
 	}
 	
-	private boolean Validate (String name, String code, Long id) {
+	private boolean validate (String name, String code, Long id) {
 		boolean ret = true;
 		for(Product product : productRepository.findAll()) {
 			if((id == null || !product.getProductId().equals(id)) && (product.getProductName().equals(name) || product.getProductCode().equals(code))) {
