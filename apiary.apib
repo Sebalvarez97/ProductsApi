@@ -48,13 +48,13 @@ This allows you to get a list of all Products in the database.
 
 ## Product [/{productId}]
 
-### Get a Product by Id
+### Get a Product by Id [GET]
 
 This allows you to get a product by his Id.
 Returns a Product, else returns a 204.
 
 + Parameters
-    + id (number) - Id of the Product.
+    + productId (number) - Id of the Product.
     
 + Response 201 (application/json)
 
@@ -146,6 +146,9 @@ Returns a copy of the Product edited, else returns a 204.
 This allows you to delete an existing Product,
 the productId field is the key to delete the product.
 Returns a copy of the deleted product, else returns a 204.
+
++ Parameters
+    + productId (number) - Id of the Product.
             
 + Response 201 (application/json)
 
