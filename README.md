@@ -3,6 +3,12 @@ Spring ApiRest for Products
 
 ## Features:
 This spring/maven project allows you to access a product data base in mysql from the web.
+The spring project is in the file spring.products.
+Products Data Base is also included in a sqlfile.
+Tests in JUnit working 100%.
+#### Bonus
+The file named as angular.products has an angular interface that allows you to see a list of products consuming the Product Api.
+Also has a PlanetService to access the Planet Project Api by Matias Luna.
 
 ### ProductService
 
